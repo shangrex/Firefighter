@@ -61,6 +61,8 @@
      <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
      <Compile Include="Assets\Script\main_camera.cs" />
      <Compile Include="Assets\Script\main_chraacter.cs" />
+     <Compile Include="Assets\Script\stair1_1.cs" />
+     <Compile Include="Assets\Script\stair1_2.cs" />
      <None Include="Assets\Resource\Fonts\OFL.txt" />
      <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
  <Reference Include="UnityEngine.UI">
