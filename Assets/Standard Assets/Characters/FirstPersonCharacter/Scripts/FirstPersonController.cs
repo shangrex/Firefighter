@@ -41,10 +41,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private string position;
+        FirstPersonController PlayerObject;
+        /*void OnCollisionEnter(Collision collision)
+        {
+            Debug.Log("213");
+            if (position == "1" && collision.gameObject.tag == "transport")
+            {
+                Debug.Log("to 2 floor");
+            }
+           
+        }*/
+
 
         // Use this for initialization
         private void Start()
         {
+
+            position = "1";
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -55,12 +69,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            
         }
 
 
         // Update is called once per frame
         private void Update()
         {
+    
+            //Debug.Log(transform.position);
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -242,6 +259,33 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            if (hit.transform.tag == "transport" && position == "1")
+            {
+                Debug.Log("go to floor 2");
+                m_CharacterController.enabled = false;
+              
+                transform.position = new Vector3(-2.5f, 42.5f, 36);
+                //transform.Rotate(0, 90, 0);
+                //transform.RotateAround(transform.position, transform.up, 180f);
+                //transform.localEulerAngles = new Vector3(0, 180, 0);
+           
+                m_CharacterController.enabled = true;
+                
+                position = "2";
+            }
+            else if (hit.transform.tag == "transport" && position == "2")
+            {
+                Debug.Log("go to floor 1");
+                m_CharacterController.enabled = false;
+                
+                transform.position = new Vector3(-2.5f, 7.5f, 3);
+                //transform.Rotate(0, 90, 0);
+                //transform.localEulerAngles = new Vector3(0, 180, 0);
+                //transform.RotateAround(transform.position, transform.up, 180f);
+                m_CharacterController.enabled = true;
+                position = "1";
+            }
+
             Rigidbody body = hit.collider.attachedRigidbody;
             //dont move the rigidbody if the character is on top of it
             if (m_CollisionFlags == CollisionFlags.Below)
