@@ -57,6 +57,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            transform.position = new Vector3(-6.76f, 1.48f, -4.51f);
         }
 
 
@@ -249,7 +250,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Debug.Log("go to floor 2");
                 m_CharacterController.enabled = false;
 
-                transform.position = new Vector3(-2.5f, 42.5f, 36);
+                transform.position = new Vector3(-3.559491f, 38.56208f, 34.53301f);
                 //transform.Rotate(0, 90, 0);
                 //transform.RotateAround(transform.position, transform.up, 180f);
                 //transform.localEulerAngles = new Vector3(0, 180, 0);
@@ -269,6 +270,30 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 //transform.RotateAround(transform.position, transform.up, 180f);
                 m_CharacterController.enabled = true;
                 position = "1";
+            }
+            else if (hit.transform.tag == "transport_2to3" && position == "2")
+            {
+                Debug.Log("go to floor 3");
+                m_CharacterController.enabled = false;
+
+                transform.position = new Vector3(-5.055611f, 78.67395f, 64.56859f);
+                //transform.Rotate(0, 90, 0);
+                //transform.localEulerAngles = new Vector3(0, 180, 0);
+                //transform.RotateAround(transform.position, transform.up, 180f);
+                m_CharacterController.enabled = true;
+                position = "3";
+            }
+            else if (hit.transform.tag == "transport" && position == "3")
+            {
+                Debug.Log("go to floor 2");
+                m_CharacterController.enabled = false;
+
+                transform.position = new Vector3(-3.917699f, 46.38f, 33.11543f);
+                //transform.Rotate(0, 90, 0);
+                //transform.localEulerAngles = new Vector3(0, 180, 0);
+                //transform.RotateAround(transform.position, transform.up, 180f);
+                m_CharacterController.enabled = true;
+                position = "2";
             }
 
             Rigidbody body = hit.collider.attachedRigidbody;

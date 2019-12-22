@@ -210,6 +210,8 @@
      <Compile Include="Assets\Script\stair1_1.cs" />
      <Compile Include="Assets\Script\stair1_2.cs" />
      <Compile Include="Assets\Script\stair2_1.cs" />
+     <Compile Include="Assets\Script\stair2_2.cs" />
+     <Compile Include="Assets\Script\stair3_1.cs" />
      <None Include="Assets\Resource\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Resource\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Resource\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
