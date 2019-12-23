@@ -43,9 +43,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         private string position;
+        private canvas q;
         // Use this for initialization
         private void Start()
         {
+            q = GameObject.FindObjectOfType<canvas>();
             position = "1";
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
@@ -242,9 +244,37 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
 
-
+        GameObject children_gameObject;
+        Vector3 vstop;
+        bool bstop = false;
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            if(hit.transform.name == "stair1_1")
+            {
+                
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(true);
+                q = GameObject.FindObjectOfType<canvas>();
+                q.startquestion();
+                hit.transform.name = "finish_question";
+                vstop = transform.position;
+                bstop = true; // stop and anser the question
+            }
+            if (bstop)
+            {
+                m_CharacterController.enabled = false;
+                transform.position = vstop;
+                m_CharacterController.enabled = true;
+            }
+           
+            if (Input.GetKeyDown(KeyCode.Escape))//answer and quit
+            {
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(false);
+                bstop = false;
+            }
+
+
             if (hit.transform.tag == "transport" && position == "1")
             {
                 Debug.Log("go to floor 2");
