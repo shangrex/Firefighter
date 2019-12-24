@@ -6,11 +6,11 @@ public class stair2_2 : MonoBehaviour {
     public Transform s;
     // Use this for initialization
     void Start () {
-        for (int i = 1; i < 7; i++)
+        for (int i = 1; i < 5; i++)
         {
             Transform c = Instantiate(s);
             c.parent = transform;
-            c.localPosition = new Vector3(0, -i, -i);
+            c.localPosition = new Vector3(0, i, -i);
         }
     }
 	
