@@ -41,12 +41,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
-
-        private string position;
         private canvas q;
+        private string position;
+
+
+        public canvas answer;
+
         // Use this for initialization
         private void Start()
         {
+            answer = gameObject.transform.GetChild(0).gameObject.GetComponent<canvas>();
             q = GameObject.FindObjectOfType<canvas>();
             position = "1";
             m_CharacterController = GetComponent<CharacterController>();
@@ -267,7 +271,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_CharacterController.enabled = true;
             }
            
-            if (Input.GetKeyDown(KeyCode.Escape))//answer and quit
+            if (Input.GetKeyDown(KeyCode.Alpha1) && answer.select_right == 0)//answer and quit
+            {
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(false);
+                bstop = false;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && answer.select_right == 1)//answer and quit
+            {
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(false);
+                bstop = false;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && answer.select_right == 2)//answer and quit
+            {
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(false);
+                bstop = false;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && answer.select_right == 3)//answer and quit
             {
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(false);

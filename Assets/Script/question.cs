@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class question : MonoBehaviour {
-   
+    public int haha = 10;
 	// Use this for initialization
 	void Start () {
         
