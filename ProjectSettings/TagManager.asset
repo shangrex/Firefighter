@@ -7,6 +7,8 @@ TagManager:
   - Fire
   - transport
   - transport_2to3
+  - random_question
+  - condition_stair
   layers:
   - Default
   - TransparentFX

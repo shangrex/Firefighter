@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using System.IO;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -43,7 +45,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
         private canvas q;
         private string position;
-
+        public Text time;
 
         public canvas answer;
 
@@ -51,6 +53,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Start()
         {
             answer = gameObject.transform.GetChild(0).gameObject.GetComponent<canvas>();
+            time = gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
             q = GameObject.FindObjectOfType<canvas>();
             position = "1";
             m_CharacterController = GetComponent<CharacterController>();
@@ -63,7 +66,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
-            transform.position = new Vector3(-6.76f, 1.48f, -4.51f);
+            //transform.position = new Vector3(-6.76f, 1.48f, -4.51f);
         }
 
 
@@ -103,6 +106,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
+            //count time
+            time.text = (float.Parse(time.text) - Time.deltaTime * 1).ToString();
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
@@ -253,6 +258,28 @@ namespace UnityStandardAssets.Characters.FirstPerson
         bool bstop = false;
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            if(hit.transform.tag == "random_question" && bstop == false)
+            {
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(true);
+                q = GameObject.FindObjectOfType<canvas>();
+                q.startquestion();
+                hit.transform.tag = "Untagged";
+                vstop = transform.position;
+                bstop = true; // stop and anser the question
+                Destroy(hit.transform.gameObject);
+            }
+            if(hit.transform.tag == "condition_stair" && bstop == false)
+            {
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(true);
+                q = GameObject.FindObjectOfType<canvas>();
+                q.condition_quesiton(hit.transform.tag);
+                hit.transform.tag = "Untagged";
+                vstop = transform.position;
+                bstop = true; // stop and anser the question
+                Destroy(hit.transform.gameObject);
+            }
             if(hit.transform.name == "stair1_1")
             {
                 
@@ -303,10 +330,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_CharacterController.enabled = false;
 
                 transform.position = new Vector3(-3.559491f, 38.56208f, 34.53301f);
-                //transform.Rotate(0, 90, 0);
-                //transform.RotateAround(transform.position, transform.up, 180f);
-                //transform.localEulerAngles = new Vector3(0, 180, 0);
-
                 m_CharacterController.enabled = true;
 
                 position = "2";
@@ -317,9 +340,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_CharacterController.enabled = false;
 
                 transform.position = new Vector3(-2.5f, 7.5f, 3);
-                //transform.Rotate(0, 90, 0);
-                //transform.localEulerAngles = new Vector3(0, 180, 0);
-                //transform.RotateAround(transform.position, transform.up, 180f);
                 m_CharacterController.enabled = true;
                 position = "1";
             }
@@ -329,9 +349,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_CharacterController.enabled = false;
 
                 transform.position = new Vector3(-5.055611f, 78.67395f, 64.56859f);
-                //transform.Rotate(0, 90, 0);
-                //transform.localEulerAngles = new Vector3(0, 180, 0);
-                //transform.RotateAround(transform.position, transform.up, 180f);
                 m_CharacterController.enabled = true;
                 position = "3";
             }
@@ -341,9 +358,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_CharacterController.enabled = false;
 
                 transform.position = new Vector3(-3.917699f, 46.38f, 33.11543f);
-                //transform.Rotate(0, 90, 0);
-                //transform.localEulerAngles = new Vector3(0, 180, 0);
-                //transform.RotateAround(transform.position, transform.up, 180f);
                 m_CharacterController.enabled = true;
                 position = "2";
             }
