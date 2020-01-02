@@ -361,6 +361,67 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_CharacterController.enabled = true;
                 position = "2";
             }
+            //door
+            if (hit.transform.name == "door2-1")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(-15.22092f, 11.38792f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door2-2")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(-10.93121f, 11.38792f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door2-3")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(14f, 11.38792f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door2-4")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(11.12511f, 11.38792f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door2-5")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(9.06193f, 11.38792f, 1.490116e-08f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door2-6")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(9.06193f, 11.38792f, -3.533898f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door3-1")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(-15.22092f, 20.48604f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door3-2")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(-10.93121f, 20.48604f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door3-3")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(7.93121f, 20.48604f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door3-4")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(4.875444f, 20.48604f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
 
             Rigidbody body = hit.collider.attachedRigidbody;
             //dont move the rigidbody if the character is on top of it
