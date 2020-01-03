@@ -5,6 +5,7 @@ using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -47,6 +48,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private string position;
         public Text time;
 
+        GameObject children_gameObject;
+        GameObject good_game_canvas;
         public canvas answer;
 
         // Use this for initialization
@@ -108,6 +111,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             //count time
             time.text = (float.Parse(time.text) - Time.deltaTime * 1).ToString();
+            if(float.Parse(time.text) < 0f)
+            {
+                good_game_canvas = gameObject.transform.GetChild(3).gameObject;
+                good_game_canvas.gameObject.SetActive(true);
+            }
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
@@ -253,7 +261,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
 
-        GameObject children_gameObject;
         Vector3 vstop;
         bool bstop = false;
         private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -321,6 +328,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(false);
                 bstop = false;
+            }
+            else if(bstop && (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha2)))
+            {
+                time.text = (float.Parse(time.text) - 10).ToString();
             }
 
 
