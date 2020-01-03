@@ -18,7 +18,8 @@ public class to_menu : MonoBehaviour {
     public void click()
     {
         Debug.Log("to menu");
-        //Scene cur = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(1);
+        Cursor.lockState = CursorLockMode.None;
+        Scene cur = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(0);
     }
 }

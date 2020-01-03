@@ -18,6 +18,6 @@ public class start_button : MonoBehaviour {
     public void click()
     {
         //Scene cur = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

@@ -113,6 +113,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             time.text = (float.Parse(time.text) - Time.deltaTime * 1).ToString();
             if(float.Parse(time.text) < 0f)
             {
+                m_MouseLook.lockCursor = false;
+                Cursor.visible = true;
                 good_game_canvas = gameObject.transform.GetChild(3).gameObject;
                 good_game_canvas.gameObject.SetActive(true);
             }
