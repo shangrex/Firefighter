@@ -19,8 +19,11 @@ public class canvas : MonoBehaviour {
     private Text C_text;
     private Text D_text;
 
-    private string[] f;
-    private string[] t;
+    private List<string> f;
+    private List<string> t;
+    private List<string> c;
+    //private string[] f;
+    //private string[] t;
     private string[] stair_question;
     private string[] stair_false;
     private string[] stair_true;
@@ -30,6 +33,9 @@ public class canvas : MonoBehaviour {
     int stair_f_counter = 0;
     int stair_t_counter = 0;
     public int select_right;
+    public TextAsset aright;
+    public TextAsset afalse;
+    public TextAsset condition;
 
     // Use this for initialization
     void Start () {
@@ -47,7 +53,28 @@ public class canvas : MonoBehaviour {
         D_text = D.GetComponent<Text>();
         gameObject.SetActive(false);
 
+        string line = "";
+        f = new List<string>();
+        string[] aright_array = aright.text.Split('\n');
+        foreach(var i in aright_array)
+        {
+            f.Add(i);
+        }
+        string[] afalse_array = afalse.text.Split('\n');
+        t = new List<string>();
+        foreach( var i in afalse_array)
+        {
+            t.Add(i);
+        }
+        string[] condition_array = condition.text.Split('\n');
+        c = new List<string>();
+        foreach(var i in condition_array)
+        {
+            c.Add(i);
+        }
+
         
+        /*
         string line = "";
 
         string path = Application.dataPath + @"/Resource/afalse.txt";
@@ -101,11 +128,12 @@ public class canvas : MonoBehaviour {
         }
     
         reader.Close();
+        */
     }
 
     public void startquestion()
     {
-        
+        background.sprite = blue;
         Q = gameObject.transform.GetChild(1).gameObject;
         A = gameObject.transform.GetChild(2).gameObject;
         B = gameObject.transform.GetChild(3).gameObject;
@@ -123,39 +151,50 @@ public class canvas : MonoBehaviour {
         
         select_right = Random.Range(0, 4);
         Debug.Log(select_right);
+        
         if(select_right == 0)
         {
-            A_text.text = t[Random.Range(0, tcounter)];
-            B_text.text = f[Random.Range(0, fcounter)];
-            C_text.text = f[Random.Range(0, fcounter)];
-            D_text.text = f[Random.Range(0, fcounter)];
+            
+            A_text.text = t[Random.Range(0, t.Count)];
+            B_text.text = f[Random.Range(0, f.Count)];
+            C_text.text = f[Random.Range(0, f.Count)];
+            D_text.text = f[Random.Range(0, f.Count)];
+            
         }
         if (select_right == 1)
         {
-            A_text.text = f[Random.Range(0, fcounter)];
-            B_text.text = t[Random.Range(0, tcounter)];
-            C_text.text = f[Random.Range(0, fcounter)];
-            D_text.text = f[Random.Range(0, fcounter)];
+            
+            A_text.text = f[Random.Range(0, f.Count)];
+            B_text.text = t[Random.Range(0, t.Count)];
+            C_text.text = f[Random.Range(0, f.Count)];
+            D_text.text = f[Random.Range(0, f.Count)];
+            
         }
         if (select_right == 2)
         {
-            A_text.text = f[Random.Range(0, fcounter)];
-            B_text.text = f[Random.Range(0, fcounter)];
-            C_text.text = t[Random.Range(0, tcounter)];
-            D_text.text = f[Random.Range(0, fcounter)];
+            
+            A_text.text = f[Random.Range(0, f.Count)];
+            B_text.text = f[Random.Range(0, f.Count)];
+            C_text.text = t[Random.Range(0, t.Count)];
+            D_text.text = f[Random.Range(0, f.Count)];
+            
         }
         if (select_right == 3)
         {
-            A_text.text = f[Random.Range(0, fcounter)];
-            B_text.text = f[Random.Range(0, fcounter)];
-            C_text.text = f[Random.Range(0, fcounter)];
-            D_text.text = t[Random.Range(0, tcounter)];
+            
+            A_text.text = f[Random.Range(0, f.Count)];
+            B_text.text = f[Random.Range(0, f.Count)];
+            C_text.text = f[Random.Range(0, f.Count)];
+            D_text.text = t[Random.Range(0, t.Count)];
+            
         }
+        
 
     }
 
     public void condition_quesiton(string tag)
     {
+        background.sprite = red;
         Q = gameObject.transform.GetChild(1).gameObject;
         A = gameObject.transform.GetChild(2).gameObject;
         B = gameObject.transform.GetChild(3).gameObject;
@@ -166,15 +205,101 @@ public class canvas : MonoBehaviour {
         B_text = B.GetComponent<Text>();
         C_text = C.GetComponent<Text>();
         D_text = D.GetComponent<Text>();
-
+        
         if (tag == "condition_stair")
         {
-            select_right = 0;
-            Q_text.text = stair_question[Random.Range(0, stair_q_counter)];
-            A_text.text = stair_true[Random.Range(0, stair_t_counter)];
-            B_text.text = stair_false[0];
-            C_text.text = stair_false[1];
-            D_text.text = stair_false[2];
+            int select = 0;
+            string[] condition_text = c[select].Split(':');
+            select_right = Random.Range(2, 6) - 2;
+            Debug.Log(select_right);
+            Q_text.text = condition_text[1];
+
+            if (select_right == 0)
+            {
+
+                A_text.text = condition_text[2];
+                B_text.text = condition_text[3];
+                C_text.text = condition_text[4];
+                D_text.text = condition_text[5];
+
+            }
+            if (select_right == 1)
+            {
+
+                A_text.text = condition_text[3];
+                B_text.text = condition_text[2];
+                C_text.text = condition_text[4];
+                D_text.text = condition_text[5];
+
+            }
+            if (select_right == 2)
+            {
+
+
+                A_text.text = condition_text[3];
+                B_text.text = condition_text[4];
+                C_text.text = condition_text[2];
+                D_text.text = condition_text[5];
+
+            }
+            if (select_right == 3)
+            {
+
+
+                A_text.text = condition_text[3];
+                B_text.text = condition_text[4];
+                C_text.text = condition_text[5];
+                D_text.text = condition_text[2];
+
+            }
+        }
+        if(tag == "condition_bathroom")
+        {
+            int select = 1;
+            string[] condition_text = c[select].Split(':');
+            select_right = Random.Range(2, 6) - 2;
+            Debug.Log(select_right);
+            Q_text.text = condition_text[1];
+
+            if (select_right == 0)
+            {
+
+                A_text.text = condition_text[2];
+                B_text.text = condition_text[3];
+                C_text.text = condition_text[4];
+                D_text.text = condition_text[5];
+
+            }
+            if (select_right == 1)
+            {
+
+                A_text.text = condition_text[3];
+                B_text.text = condition_text[2];
+                C_text.text = condition_text[4];
+                D_text.text = condition_text[5];
+
+            }
+            if (select_right == 2)
+            {
+
+
+                A_text.text = condition_text[3];
+                B_text.text = condition_text[4];
+                C_text.text = condition_text[2];
+                D_text.text = condition_text[5];
+
+            }
+            if (select_right == 3)
+            {
+
+
+                A_text.text = condition_text[3];
+                B_text.text = condition_text[4];
+                C_text.text = condition_text[5];
+                D_text.text = condition_text[2];
+
+            }
+
         }
     }
 	

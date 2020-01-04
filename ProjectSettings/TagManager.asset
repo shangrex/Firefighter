@@ -9,6 +9,7 @@ TagManager:
   - transport_2to3
   - random_question
   - condition_stair
+  - condition_bathroom
   layers:
   - Default
   - TransparentFX

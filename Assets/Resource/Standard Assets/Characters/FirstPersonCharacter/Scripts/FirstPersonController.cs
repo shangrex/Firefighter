@@ -47,6 +47,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private canvas q;
         private string position;
         public Text time;
+        public AudioClip[] music;
+        private AudioSource music_clip;
 
         GameObject children_gameObject;
         GameObject good_game_canvas;
@@ -55,6 +57,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Use this for initialization
         private void Start()
         {
+            AudioClip[] music = new AudioClip[1];
+            music_clip = GetComponent<AudioSource>();
             answer = gameObject.transform.GetChild(0).gameObject.GetComponent<canvas>();
             time = gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
             q = GameObject.FindObjectOfType<canvas>();
@@ -267,8 +271,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         bool bstop = false;
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            //random question hit
             if(hit.transform.tag == "random_question" && bstop == false)
             {
+                music_clip.clip = music[0];
+                music_clip.Play();
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(true);
                 q = GameObject.FindObjectOfType<canvas>();
@@ -278,7 +285,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 bstop = true; // stop and anser the question
                 Destroy(hit.transform.gameObject);
             }
-            if(hit.transform.tag == "condition_stair" && bstop == false)
+            //condition question hit
+            if((hit.transform.tag == "condition_stair" || hit.transform.tag == "condition_bathroom") && bstop == false)
             {
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(true);
@@ -289,6 +297,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 bstop = true; // stop and anser the question
                 Destroy(hit.transform.gameObject);
             }
+            //test question hit
             if(hit.transform.name == "stair1_1")
             {
                 
@@ -300,37 +309,42 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 vstop = transform.position;
                 bstop = true; // stop and anser the question
             }
+            //dont move
             if (bstop)
             {
                 m_CharacterController.enabled = false;
                 transform.position = vstop;
                 m_CharacterController.enabled = true;
             }
-           
+            //right answer
             if (Input.GetKeyDown(KeyCode.Alpha1) && answer.select_right == 0)//answer and quit
             {
+                music_clip.Stop();
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(false);
                 bstop = false;
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && answer.select_right == 1)//answer and quit
             {
+                music_clip.Stop();
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(false);
                 bstop = false;
             }
             if (Input.GetKeyDown(KeyCode.Alpha3) && answer.select_right == 2)//answer and quit
             {
+                music_clip.Stop();
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(false);
                 bstop = false;
             }
             if (Input.GetKeyDown(KeyCode.Alpha4) && answer.select_right == 3)//answer and quit
             {
+                music_clip.Stop();
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(false);
                 bstop = false;
-            }
+            }//wrong asnwer
             else if(bstop && (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha2)))
             {
                 time.text = (float.Parse(time.text) - 10).ToString();
