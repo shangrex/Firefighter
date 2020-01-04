@@ -51,9 +51,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource music_clip;
 
         GameObject children_gameObject;
+        GameObject gameover_canvas;
         GameObject good_game_canvas;
         public canvas answer;
-
         // Use this for initialization
         private void Start()
         {
@@ -119,8 +119,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MouseLook.lockCursor = false;
                 Cursor.visible = true;
-                good_game_canvas = gameObject.transform.GetChild(3).gameObject;
-                good_game_canvas.gameObject.SetActive(true);
+                gameover_canvas = gameObject.transform.GetChild(3).gameObject;
+                gameover_canvas.gameObject.SetActive(true);
             }
 
             //right answer
@@ -359,47 +359,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 //transform.position = vstop;
                 //m_CharacterController.enabled = true;
             }
-           
 
-
-            if (hit.transform.tag == "transport" && position == "1")
-            {
-                Debug.Log("go to floor 2");
-                m_CharacterController.enabled = false;
-
-                transform.position = new Vector3(-3.559491f, 38.56208f, 34.53301f);
-                m_CharacterController.enabled = true;
-
-                position = "2";
-            }
-            else if (hit.transform.tag == "transport" && position == "2")
-            {
-                Debug.Log("go to floor 1");
-                m_CharacterController.enabled = false;
-
-                transform.position = new Vector3(-2.5f, 7.5f, 3);
-                m_CharacterController.enabled = true;
-                position = "1";
-            }
-            else if (hit.transform.tag == "transport_2to3" && position == "2")
-            {
-                Debug.Log("go to floor 3");
-                m_CharacterController.enabled = false;
-
-                transform.position = new Vector3(-5.055611f, 78.67395f, 64.56859f);
-                m_CharacterController.enabled = true;
-                position = "3";
-            }
-            else if (hit.transform.tag == "transport" && position == "3")
-            {
-                Debug.Log("go to floor 2");
-                m_CharacterController.enabled = false;
-
-                transform.position = new Vector3(-3.917699f, 46.38f, 33.11543f);
-                m_CharacterController.enabled = true;
-                position = "2";
-            }
             //door
+            if (hit.transform.name == "door1-1")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(-15.22092f, 1.48f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "door1-2")
+            {
+                m_CharacterController.enabled = false;
+                transform.position = new Vector3(-10.93121f, 1.48f, -4.338239f);
+                m_CharacterController.enabled = true;
+            }
             if (hit.transform.name == "door2-1")
             {
                 m_CharacterController.enabled = false;
@@ -451,7 +424,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (hit.transform.name == "door3-3")
             {
                 m_CharacterController.enabled = false;
-                transform.position = new Vector3(7.93121f, 20.48604f, -4.338239f);
+                transform.position = new Vector3(10f, 20.48604f, -4.338239f);
                 m_CharacterController.enabled = true;
             }
             if (hit.transform.name == "door3-4")
@@ -459,6 +432,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_CharacterController.enabled = false;
                 transform.position = new Vector3(4.875444f, 20.48604f, -4.338239f);
                 m_CharacterController.enabled = true;
+            }
+            if (hit.transform.name == "windowevent" && float.Parse(time.text) <= 30f)
+            {
+                m_MouseLook.lockCursor = false;
+                Cursor.visible = true;
+                good_game_canvas = gameObject.transform.GetChild(4).gameObject;
+                good_game_canvas.gameObject.SetActive(true);
             }
 
             Rigidbody body = hit.collider.attachedRigidbody;
