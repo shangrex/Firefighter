@@ -122,6 +122,45 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 good_game_canvas = gameObject.transform.GetChild(3).gameObject;
                 good_game_canvas.gameObject.SetActive(true);
             }
+
+            //right answer
+            if (Input.GetKeyDown(KeyCode.Alpha1) && answer.select_right == 0)//answer and quit
+            {
+                music_clip.Stop();
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(false);
+                bstop = false;
+                m_CharacterController.enabled = true;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && answer.select_right == 1)//answer and quit
+            {
+                music_clip.Stop();
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(false);
+                bstop = false;
+                m_CharacterController.enabled = true;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && answer.select_right == 2)//answer and quit
+            {
+                music_clip.Stop();
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(false);
+                bstop = false;
+                m_CharacterController.enabled = true;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && answer.select_right == 3)//answer and quit
+            {
+                music_clip.Stop();
+                children_gameObject = gameObject.transform.GetChild(0).gameObject;
+                children_gameObject.gameObject.SetActive(false);
+                bstop = false;
+                m_CharacterController.enabled = true;
+            }//wrong asnwer
+            else if (bstop && (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha2)))
+            {
+                time.text = (float.Parse(time.text) - 10).ToString();
+            }
+
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
@@ -196,12 +235,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             // pick & play a random footstep sound from the array,
             // excluding sound at index 0
-            int n = Random.Range(1, m_FootstepSounds.Length);
-            m_AudioSource.clip = m_FootstepSounds[n];
-            m_AudioSource.PlayOneShot(m_AudioSource.clip);
-            // move picked sound to index 0 so it's not picked next time
-            m_FootstepSounds[n] = m_FootstepSounds[0];
-            m_FootstepSounds[0] = m_AudioSource.clip;
+            if (bstop == false)
+            {
+                int n = Random.Range(1, m_FootstepSounds.Length);
+                m_AudioSource.clip = m_FootstepSounds[n];
+                m_AudioSource.PlayOneShot(m_AudioSource.clip);
+                // move picked sound to index 0 so it's not picked next time
+                m_FootstepSounds[n] = m_FootstepSounds[0];
+                m_FootstepSounds[0] = m_AudioSource.clip;
+            }
         }
 
 
@@ -271,6 +313,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         bool bstop = false;
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            
             //random question hit
             if(hit.transform.tag == "random_question" && bstop == false)
             {
@@ -313,42 +356,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (bstop)
             {
                 m_CharacterController.enabled = false;
-                transform.position = vstop;
-                m_CharacterController.enabled = true;
+                //transform.position = vstop;
+                //m_CharacterController.enabled = true;
             }
-            //right answer
-            if (Input.GetKeyDown(KeyCode.Alpha1) && answer.select_right == 0)//answer and quit
-            {
-                music_clip.Stop();
-                children_gameObject = gameObject.transform.GetChild(0).gameObject;
-                children_gameObject.gameObject.SetActive(false);
-                bstop = false;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2) && answer.select_right == 1)//answer and quit
-            {
-                music_clip.Stop();
-                children_gameObject = gameObject.transform.GetChild(0).gameObject;
-                children_gameObject.gameObject.SetActive(false);
-                bstop = false;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3) && answer.select_right == 2)//answer and quit
-            {
-                music_clip.Stop();
-                children_gameObject = gameObject.transform.GetChild(0).gameObject;
-                children_gameObject.gameObject.SetActive(false);
-                bstop = false;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4) && answer.select_right == 3)//answer and quit
-            {
-                music_clip.Stop();
-                children_gameObject = gameObject.transform.GetChild(0).gameObject;
-                children_gameObject.gameObject.SetActive(false);
-                bstop = false;
-            }//wrong asnwer
-            else if(bstop && (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha2)))
-            {
-                time.text = (float.Parse(time.text) - 10).ToString();
-            }
+           
 
 
             if (hit.transform.tag == "transport" && position == "1")

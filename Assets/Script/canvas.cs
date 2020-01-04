@@ -55,16 +55,18 @@ public class canvas : MonoBehaviour {
 
         string line = "";
         f = new List<string>();
+        t = new List<string>();
         string[] aright_array = aright.text.Split('\n');
         foreach(var i in aright_array)
         {
-            f.Add(i);
+            t.Add(i);
+            
         }
         string[] afalse_array = afalse.text.Split('\n');
-        t = new List<string>();
+      
         foreach( var i in afalse_array)
         {
-            t.Add(i);
+            f.Add(i);
         }
         string[] condition_array = condition.text.Split('\n');
         c = new List<string>();
@@ -155,37 +157,37 @@ public class canvas : MonoBehaviour {
         if(select_right == 0)
         {
             
-            A_text.text = t[Random.Range(0, t.Count)];
-            B_text.text = f[Random.Range(0, f.Count)];
-            C_text.text = f[Random.Range(0, f.Count)];
-            D_text.text = f[Random.Range(0, f.Count)];
+            A_text.text = t[Random.Range(0, t.Count - 1)];
+            B_text.text = f[Random.Range(0, f.Count - 1)];
+            C_text.text = f[Random.Range(0, f.Count - 1)];
+            D_text.text = f[Random.Range(0, f.Count - 1)];
             
         }
         if (select_right == 1)
         {
             
-            A_text.text = f[Random.Range(0, f.Count)];
-            B_text.text = t[Random.Range(0, t.Count)];
-            C_text.text = f[Random.Range(0, f.Count)];
-            D_text.text = f[Random.Range(0, f.Count)];
+            A_text.text = f[Random.Range(0, f.Count - 1)];
+            B_text.text = t[Random.Range(0, t.Count - 1)];
+            C_text.text = f[Random.Range(0, f.Count - 1)];
+            D_text.text = f[Random.Range(0, f.Count - 1)];
             
         }
         if (select_right == 2)
         {
             
-            A_text.text = f[Random.Range(0, f.Count)];
-            B_text.text = f[Random.Range(0, f.Count)];
-            C_text.text = t[Random.Range(0, t.Count)];
-            D_text.text = f[Random.Range(0, f.Count)];
+            A_text.text = f[Random.Range(0, f.Count - 1)];
+            B_text.text = f[Random.Range(0, f.Count - 1)];
+            C_text.text = t[Random.Range(0, t.Count - 1)];
+            D_text.text = f[Random.Range(0, f.Count - 1)];
             
         }
         if (select_right == 3)
         {
             
-            A_text.text = f[Random.Range(0, f.Count)];
-            B_text.text = f[Random.Range(0, f.Count)];
-            C_text.text = f[Random.Range(0, f.Count)];
-            D_text.text = t[Random.Range(0, t.Count)];
+            A_text.text = f[Random.Range(0, f.Count - 1)];
+            B_text.text = f[Random.Range(0, f.Count - 1)];
+            C_text.text = f[Random.Range(0, f.Count - 1)];
+            D_text.text = t[Random.Range(0, t.Count - 1)];
             
         }
         
