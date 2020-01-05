@@ -157,37 +157,37 @@ public class canvas : MonoBehaviour {
         if(select_right == 0)
         {
             
-            A_text.text = t[Random.Range(0, t.Count - 1)];
-            B_text.text = f[Random.Range(0, f.Count - 1)];
-            C_text.text = f[Random.Range(0, f.Count - 1)];
-            D_text.text = f[Random.Range(0, f.Count - 1)];
+            A_text.text = "1 " + t[Random.Range(0, t.Count - 1)];
+            B_text.text = "2 " + f[Random.Range(0, f.Count - 1)];
+            C_text.text = "3 "+ f[Random.Range(0, f.Count - 1)];
+            D_text.text = "4 " + f[Random.Range(0, f.Count - 1)];
             
         }
         if (select_right == 1)
         {
             
-            A_text.text = f[Random.Range(0, f.Count - 1)];
-            B_text.text = t[Random.Range(0, t.Count - 1)];
-            C_text.text = f[Random.Range(0, f.Count - 1)];
-            D_text.text = f[Random.Range(0, f.Count - 1)];
+            A_text.text = "1 " + f[Random.Range(0, f.Count - 1)];
+            B_text.text = "2 " + t[Random.Range(0, t.Count - 1)];
+            C_text.text = "3 " + f[Random.Range(0, f.Count - 1)];
+            D_text.text = "4 " + f[Random.Range(0, f.Count - 1)];
             
         }
         if (select_right == 2)
         {
             
-            A_text.text = f[Random.Range(0, f.Count - 1)];
-            B_text.text = f[Random.Range(0, f.Count - 1)];
-            C_text.text = t[Random.Range(0, t.Count - 1)];
-            D_text.text = f[Random.Range(0, f.Count - 1)];
+            A_text.text = "1 " + f[Random.Range(0, f.Count - 1)];
+            B_text.text = "2 " + f[Random.Range(0, f.Count - 1)];
+            C_text.text = "3 " + t[Random.Range(0, t.Count - 1)];
+            D_text.text = "4 " + f[Random.Range(0, f.Count - 1)];
             
         }
         if (select_right == 3)
         {
             
-            A_text.text = f[Random.Range(0, f.Count - 1)];
-            B_text.text = f[Random.Range(0, f.Count - 1)];
-            C_text.text = f[Random.Range(0, f.Count - 1)];
-            D_text.text = t[Random.Range(0, t.Count - 1)];
+            A_text.text = "1 " + f[Random.Range(0, f.Count - 1)];
+            B_text.text = "2 " + f[Random.Range(0, f.Count - 1)];
+            C_text.text = "3 " + f[Random.Range(0, f.Count - 1)];
+            D_text.text = "4 " + t[Random.Range(0, t.Count - 1)];
             
         }
         
@@ -219,39 +219,39 @@ public class canvas : MonoBehaviour {
             if (select_right == 0)
             {
 
-                A_text.text = condition_text[2];
-                B_text.text = condition_text[3];
-                C_text.text = condition_text[4];
-                D_text.text = condition_text[5];
+                A_text.text = "1 " + condition_text[2];
+                B_text.text = "2 " + condition_text[3];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
 
             }
             if (select_right == 1)
             {
 
-                A_text.text = condition_text[3];
-                B_text.text = condition_text[2];
-                C_text.text = condition_text[4];
-                D_text.text = condition_text[5];
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[2];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
 
             }
             if (select_right == 2)
             {
 
 
-                A_text.text = condition_text[3];
-                B_text.text = condition_text[4];
-                C_text.text = condition_text[2];
-                D_text.text = condition_text[5];
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[2];
+                D_text.text = "4 " + condition_text[5];
 
             }
             if (select_right == 3)
             {
 
 
-                A_text.text = condition_text[3];
-                B_text.text = condition_text[4];
-                C_text.text = condition_text[5];
-                D_text.text = condition_text[2];
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[5];
+                D_text.text = "4 " + condition_text[2];
 
             }
         }
@@ -266,39 +266,183 @@ public class canvas : MonoBehaviour {
             if (select_right == 0)
             {
 
-                A_text.text = condition_text[2];
-                B_text.text = condition_text[3];
-                C_text.text = condition_text[4];
-                D_text.text = condition_text[5];
+                A_text.text = "1 " + condition_text[2];
+                B_text.text = "2 " + condition_text[3];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
 
             }
             if (select_right == 1)
             {
 
-                A_text.text = condition_text[3];
-                B_text.text = condition_text[2];
-                C_text.text = condition_text[4];
-                D_text.text = condition_text[5];
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[2];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
 
             }
             if (select_right == 2)
             {
 
 
-                A_text.text = condition_text[3];
-                B_text.text = condition_text[4];
-                C_text.text = condition_text[2];
-                D_text.text = condition_text[5];
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[2];
+                D_text.text = "4 " + condition_text[5];
 
             }
             if (select_right == 3)
             {
 
 
-                A_text.text = condition_text[3];
-                B_text.text = condition_text[4];
-                C_text.text = condition_text[5];
-                D_text.text = condition_text[2];
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[5];
+                D_text.text = "4 " + condition_text[2];
+
+            }
+
+        }
+        if (tag == "condition_kitchen")
+        {
+            int select = 2;
+            string[] condition_text = c[select].Split(':');
+            select_right = Random.Range(2, 6) - 2;
+            Debug.Log(select_right);
+            Q_text.text = condition_text[1];
+
+            if (select_right == 0)
+            {
+
+                A_text.text = "1 " + condition_text[2];
+                B_text.text = "2 " + condition_text[3];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 1)
+            {
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[2];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 2)
+            {
+
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[2];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 3)
+            {
+
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[5];
+                D_text.text = "4 " + condition_text[2];
+
+            }
+
+        }
+        if (tag == "condition_bathroom2")
+        {
+            int select = 3;
+            string[] condition_text = c[select].Split(':');
+            select_right = Random.Range(2, 6) - 2;
+            Debug.Log(select_right);
+            Q_text.text = condition_text[1];
+
+            if (select_right == 0)
+            {
+
+                A_text.text = "1 " + condition_text[2];
+                B_text.text = "2 " + condition_text[3];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 1)
+            {
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[2];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 2)
+            {
+
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[2];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 3)
+            {
+
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[5];
+                D_text.text = "4 " + condition_text[2];
+
+            }
+
+        }
+        if (tag == "condition_hydra")
+        {
+            int select = 4;
+            string[] condition_text = c[select].Split(':');
+            select_right = Random.Range(2, 6) - 2;
+            Debug.Log(select_right);
+            Q_text.text = condition_text[1];
+
+            if (select_right == 0)
+            {
+
+                A_text.text = "1 " + condition_text[2];
+                B_text.text = "2 " + condition_text[3];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 1)
+            {
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[2];
+                C_text.text = "3 " + condition_text[4];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 2)
+            {
+
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[2];
+                D_text.text = "4 " + condition_text[5];
+
+            }
+            if (select_right == 3)
+            {
+
+
+                A_text.text = "1 " + condition_text[3];
+                B_text.text = "2 " + condition_text[4];
+                C_text.text = "3 " + condition_text[5];
+                D_text.text = "4 " + condition_text[2];
 
             }
 

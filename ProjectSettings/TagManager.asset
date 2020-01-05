@@ -10,6 +10,9 @@ TagManager:
   - random_question
   - condition_stair
   - condition_bathroom
+  - condition_kitchen
+  - condition_bathroom2
+  - condition_hydra
   layers:
   - Default
   - TransparentFX

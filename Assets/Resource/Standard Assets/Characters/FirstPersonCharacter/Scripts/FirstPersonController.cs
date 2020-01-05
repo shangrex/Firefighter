@@ -61,7 +61,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Use this for initialization
         private void Start()
         {
-            AudioClip[] music = new AudioClip[1];
+            backgound_sound = new background_music();
+            AudioClip[] music = new AudioClip[2];
             music_clip = GetComponent<AudioSource>();
             answer = gameObject.transform.GetChild(0).gameObject.GetComponent<canvas>();
             time = gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
@@ -139,6 +140,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
+            
             //count time
             time.text = (float.Parse(time.text) - Time.deltaTime * 1).ToString();
             if(float.Parse(time.text) < 0f)
@@ -336,12 +338,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
         Vector3 vstop;
-        bool bstop = false;
+        public bool bstop = false;
+        public background_music backgound_sound;
+        public void check_music(bool tmp)
+        {
+            backgound_sound.music_stop(tmp);
+        }
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            
+            //check_music(bstop);
             //random question hit
-            if(hit.transform.tag == "random_question" && bstop == false)
+            if (hit.transform.tag == "random_question" && bstop == false)
             {
                 music_clip.clip = music[0];
                 music_clip.Play();
@@ -355,8 +362,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Destroy(hit.transform.gameObject);
             }
             //condition question hit
-            if((hit.transform.tag == "condition_stair" || hit.transform.tag == "condition_bathroom") && bstop == false)
+            if((hit.transform.tag == "condition_stair" || hit.transform.tag == "condition_bathroom" || hit.transform.tag == "condition_kitchen" || hit.transform.tag == "condition_bathroom2" || hit.transform.tag == "condition_hydra") && bstop == false)
             {
+                music_clip.clip = music[1];
+                music_clip.Play();
                 children_gameObject = gameObject.transform.GetChild(0).gameObject;
                 children_gameObject.gameObject.SetActive(true);
                 q = GameObject.FindObjectOfType<canvas>();
