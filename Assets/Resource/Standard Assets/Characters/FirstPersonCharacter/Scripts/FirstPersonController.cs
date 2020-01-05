@@ -49,10 +49,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public Text time;
         public AudioClip[] music;
         private AudioSource music_clip;
+        public RectTransform blood;
+        public RectTransform red;
 
         GameObject children_gameObject;
         GameObject gameover_canvas;
         GameObject good_game_canvas;
+        GameObject[] smoke = new GameObject[9];
+
         public canvas answer;
         // Use this for initialization
         private void Start()
@@ -74,12 +78,34 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
             //transform.position = new Vector3(-6.76f, 1.48f, -4.51f);
+            for(int i = 1; i <= 9; i++)
+            {
+                string s = "SmokeEffect" + i.ToString();
+                smoke[i - 1] = GameObject.Find(s);
+                if(i > 1)
+                {
+                    smoke[i - 1].gameObject.SetActive(false);
+                }
+            }
         }
 
 
         // Update is called once per frame
         private void Update()
         {
+            blood.sizeDelta = new Vector2(float.Parse(time.text), blood.sizeDelta.y);
+            if (red.sizeDelta.x > blood.sizeDelta.x)
+            {
+                red.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 10;
+
+            }
+            for(int i = 1; i < 9; i++)
+            {
+                if(float.Parse(time.text) < 200 - 15 * i)
+                {
+                    smoke[i].gameObject.SetActive(true);
+                } 
+            }
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -373,6 +399,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 transform.position = new Vector3(-10.93121f, 1.48f, -4.338239f);
                 m_CharacterController.enabled = true;
             }
+            if (hit.transform.name == "door1-3")
+            {
+                m_MouseLook.lockCursor = false;
+                Cursor.visible = true;
+                good_game_canvas = gameObject.transform.GetChild(4).gameObject;
+                good_game_canvas.gameObject.SetActive(true);
+            }
             if (hit.transform.name == "door2-1")
             {
                 m_CharacterController.enabled = false;
@@ -388,7 +421,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (hit.transform.name == "door2-3")
             {
                 m_CharacterController.enabled = false;
-                transform.position = new Vector3(14f, 11.38792f, -4.338239f);
+                transform.position = new Vector3(15f, 11.38792f, -4.338239f);
                 m_CharacterController.enabled = true;
             }
             if (hit.transform.name == "door2-4")
