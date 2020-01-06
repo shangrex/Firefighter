@@ -346,6 +346,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            Debug.Log(hit.gameObject.name);
             //check_music(bstop);
             //random question hit
             if (hit.transform.tag == "random_question" && bstop == false)
